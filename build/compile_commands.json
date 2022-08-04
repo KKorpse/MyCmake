@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/korpse/CPP/MyCmake/build/googletest-build/googlemock",
+  "command": "/usr/bin/c++  -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgmock_main_EXPORTS -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest  -fPIC   -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++1z -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /home/korpse/CPP/MyCmake/build/googletest-src/googlemock/src/gmock_main.cc",
+  "file": "/home/korpse/CPP/MyCmake/build/googletest-src/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/home/korpse/CPP/MyCmake/build/googletest-build/googlemock",
+  "command": "/usr/bin/c++  -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgmock_EXPORTS -I/home/korpse/CPP/MyCmake/build/googletest-src/googlemock/include -I/home/korpse/CPP/MyCmake/build/googletest-src/googlemock -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest  -fPIC   -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++1z -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/korpse/CPP/MyCmake/build/googletest-src/googlemock/src/gmock-all.cc",
+  "file": "/home/korpse/CPP/MyCmake/build/googletest-src/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/home/korpse/CPP/MyCmake/build/googletest-build/googletest",
+  "command": "/usr/bin/c++  -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgtest_main_EXPORTS -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest  -fPIC   -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++1z -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/korpse/CPP/MyCmake/build/googletest-src/googletest/src/gtest_main.cc",
+  "file": "/home/korpse/CPP/MyCmake/build/googletest-src/googletest/src/gtest_main.cc"
+},
+{
+  "directory": "/home/korpse/CPP/MyCmake/build/googletest-build/googletest",
+  "command": "/usr/bin/c++  -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgtest_EXPORTS -I/home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -I/home/korpse/CPP/MyCmake/build/googletest-src/googletest  -fPIC   -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++1z -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/korpse/CPP/MyCmake/build/googletest-src/googletest/src/gtest-all.cc",
+  "file": "/home/korpse/CPP/MyCmake/build/googletest-src/googletest/src/gtest-all.cc"
+},
+{
+  "directory": "/home/korpse/CPP/MyCmake/build/src",
+  "command": "/usr/bin/c++  -Dbustub_shared_EXPORTS -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/src/include -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -fPIC   -std=gnu++1z -o CMakeFiles/bustub_shared.dir/fulgurDB/my_test.cpp.o -c /home/korpse/CPP/MyCmake/src/fulgurDB/my_test.cpp",
+  "file": "/home/korpse/CPP/MyCmake/src/fulgurDB/my_test.cpp"
+},
+{
+  "directory": "/home/korpse/CPP/MyCmake/build/src",
+  "command": "/usr/bin/c++  -Dthirdparty_murmur3_EXPORTS -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/src/include -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -fPIC   -std=gnu++1z -o CMakeFiles/thirdparty_murmur3.dir/__/third_party/murmur3/MurmurHash3.cpp.o -c /home/korpse/CPP/MyCmake/third_party/murmur3/MurmurHash3.cpp",
+  "file": "/home/korpse/CPP/MyCmake/third_party/murmur3/MurmurHash3.cpp"
+},
+{
+  "directory": "/home/korpse/CPP/MyCmake/build/test",
+  "command": "/usr/bin/c++   -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/src/include -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes   -std=gnu++1z -o CMakeFiles/my_test_test.dir/fulgurDB/my_test_test.cpp.o -c /home/korpse/CPP/MyCmake/test/fulgurDB/my_test_test.cpp",
+  "file": "/home/korpse/CPP/MyCmake/test/fulgurDB/my_test_test.cpp"
+}
+]

@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/include/fulgurDB/my_test.h
+iostream
+-
+
+/home/korpse/CPP/MyCmake/src/fulgurDB/my_test.cpp
+fulgurDB/my_test.h
+/home/korpse/CPP/MyCmake/src/fulgurDB/fulgurDB/my_test.h
+
