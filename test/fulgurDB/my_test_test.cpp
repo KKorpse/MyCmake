@@ -13,11 +13,8 @@
 #include "fulgurDB/my_test.h"
 #include "gtest/gtest.h"
 
-
 TEST(MyTestTest, SampleTest) {
-
   FulgurDB f;
   int r = f.PrintSomething(10);
   EXPECT_EQ(r, 10);
-
 }
