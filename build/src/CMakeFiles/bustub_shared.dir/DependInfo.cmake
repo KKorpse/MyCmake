@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/korpse/CPP/MyCmake/src/fulgurDB/my_test.cpp" "/home/korpse/CPP/MyCmake/build/src/CMakeFiles/bustub_shared.dir/fulgurDB/my_test.cpp.o"
+  "/home/korpse/CPP/MyCmake/src/logging/log_manager.cpp" "/home/korpse/CPP/MyCmake/build/src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o"
+  "/home/korpse/CPP/MyCmake/src/logging/records/log_record.cpp" "/home/korpse/CPP/MyCmake/build/src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../src"
-  "../src/include"
   "../test/include"
   "../third_party"
   )

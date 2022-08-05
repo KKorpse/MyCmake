@@ -6,5 +6,5 @@ CXX_FLAGS =  -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wn
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/src/include -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock 
+CXX_INCLUDES = -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock 
 

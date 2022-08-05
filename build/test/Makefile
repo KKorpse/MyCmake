@@ -198,46 +198,46 @@ build-tests/fast:
 .PHONY : build-tests/fast
 
 # Convenience name for target.
-test/CMakeFiles/my_test_test.dir/rule:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/my_test_test.dir/rule
-.PHONY : test/CMakeFiles/my_test_test.dir/rule
+test/CMakeFiles/log_records_test.dir/rule:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/log_records_test.dir/rule
+.PHONY : test/CMakeFiles/log_records_test.dir/rule
 
 # Convenience name for target.
-my_test_test: test/CMakeFiles/my_test_test.dir/rule
+log_records_test: test/CMakeFiles/log_records_test.dir/rule
 
-.PHONY : my_test_test
+.PHONY : log_records_test
 
 # fast build rule for target.
-my_test_test/fast:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/my_test_test.dir/build.make test/CMakeFiles/my_test_test.dir/build
-.PHONY : my_test_test/fast
+log_records_test/fast:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/log_records_test.dir/build.make test/CMakeFiles/log_records_test.dir/build
+.PHONY : log_records_test/fast
 
-fulgurDB/my_test_test.o: fulgurDB/my_test_test.cpp.o
+fulgurDB/log_records_test.o: fulgurDB/log_records_test.cpp.o
 
-.PHONY : fulgurDB/my_test_test.o
+.PHONY : fulgurDB/log_records_test.o
 
 # target to build an object file
-fulgurDB/my_test_test.cpp.o:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/my_test_test.dir/build.make test/CMakeFiles/my_test_test.dir/fulgurDB/my_test_test.cpp.o
-.PHONY : fulgurDB/my_test_test.cpp.o
+fulgurDB/log_records_test.cpp.o:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/log_records_test.dir/build.make test/CMakeFiles/log_records_test.dir/fulgurDB/log_records_test.cpp.o
+.PHONY : fulgurDB/log_records_test.cpp.o
 
-fulgurDB/my_test_test.i: fulgurDB/my_test_test.cpp.i
+fulgurDB/log_records_test.i: fulgurDB/log_records_test.cpp.i
 
-.PHONY : fulgurDB/my_test_test.i
+.PHONY : fulgurDB/log_records_test.i
 
 # target to preprocess a source file
-fulgurDB/my_test_test.cpp.i:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/my_test_test.dir/build.make test/CMakeFiles/my_test_test.dir/fulgurDB/my_test_test.cpp.i
-.PHONY : fulgurDB/my_test_test.cpp.i
+fulgurDB/log_records_test.cpp.i:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/log_records_test.dir/build.make test/CMakeFiles/log_records_test.dir/fulgurDB/log_records_test.cpp.i
+.PHONY : fulgurDB/log_records_test.cpp.i
 
-fulgurDB/my_test_test.s: fulgurDB/my_test_test.cpp.s
+fulgurDB/log_records_test.s: fulgurDB/log_records_test.cpp.s
 
-.PHONY : fulgurDB/my_test_test.s
+.PHONY : fulgurDB/log_records_test.s
 
 # target to generate assembly for a file
-fulgurDB/my_test_test.cpp.s:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/my_test_test.dir/build.make test/CMakeFiles/my_test_test.dir/fulgurDB/my_test_test.cpp.s
-.PHONY : fulgurDB/my_test_test.cpp.s
+fulgurDB/log_records_test.cpp.s:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/log_records_test.dir/build.make test/CMakeFiles/log_records_test.dir/fulgurDB/log_records_test.cpp.s
+.PHONY : fulgurDB/log_records_test.cpp.s
 
 # Help Target
 help:
@@ -251,13 +251,13 @@ help:
 	@echo "... install/strip"
 	@echo "... build-tests"
 	@echo "... rebuild_cache"
-	@echo "... my_test_test"
+	@echo "... log_records_test"
 	@echo "... install/local"
 	@echo "... test"
 	@echo "... edit_cache"
-	@echo "... fulgurDB/my_test_test.o"
-	@echo "... fulgurDB/my_test_test.i"
-	@echo "... fulgurDB/my_test_test.s"
+	@echo "... fulgurDB/log_records_test.o"
+	@echo "... fulgurDB/log_records_test.i"
+	@echo "... fulgurDB/log_records_test.s"
 .PHONY : help
 
 

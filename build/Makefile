@@ -324,17 +324,17 @@ build-tests/fast:
 .PHONY : build-tests/fast
 
 #=============================================================================
-# Target rules for targets named my_test_test
+# Target rules for targets named log_records_test
 
 # Build rule for target.
-my_test_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 my_test_test
-.PHONY : my_test_test
+log_records_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 log_records_test
+.PHONY : log_records_test
 
 # fast build rule for target.
-my_test_test/fast:
-	$(MAKE) -f test/CMakeFiles/my_test_test.dir/build.make test/CMakeFiles/my_test_test.dir/build
-.PHONY : my_test_test/fast
+log_records_test/fast:
+	$(MAKE) -f test/CMakeFiles/log_records_test.dir/build.make test/CMakeFiles/log_records_test.dir/build
+.PHONY : log_records_test/fast
 
 # Help Target
 help:
@@ -361,7 +361,7 @@ help:
 	@echo "... thirdparty_murmur3"
 	@echo "... check-tests"
 	@echo "... build-tests"
-	@echo "... my_test_test"
+	@echo "... log_records_test"
 .PHONY : help
 
 

@@ -6,11 +6,19 @@
 
 #IncludeRegexTransform: 
 
-../src/include/fulgurDB/my_test.h
+../src/logging/log_manager.h
 iostream
 -
 
-/home/korpse/CPP/MyCmake/src/fulgurDB/my_test.cpp
-fulgurDB/my_test.h
-/home/korpse/CPP/MyCmake/src/fulgurDB/fulgurDB/my_test.h
+../src/logging/records/log_record.h
+iostream
+-
+
+/home/korpse/CPP/MyCmake/src/logging/log_manager.cpp
+logging/log_manager.h
+/home/korpse/CPP/MyCmake/src/logging/logging/log_manager.h
+
+/home/korpse/CPP/MyCmake/src/logging/records/log_record.cpp
+logging/records/log_record.h
+/home/korpse/CPP/MyCmake/src/logging/records/logging/records/log_record.h
 

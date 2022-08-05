@@ -21,17 +21,22 @@
 },
 {
   "directory": "/home/korpse/CPP/MyCmake/build/src",
-  "command": "/usr/bin/c++  -Dbustub_shared_EXPORTS -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/src/include -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -fPIC   -std=gnu++1z -o CMakeFiles/bustub_shared.dir/fulgurDB/my_test.cpp.o -c /home/korpse/CPP/MyCmake/src/fulgurDB/my_test.cpp",
-  "file": "/home/korpse/CPP/MyCmake/src/fulgurDB/my_test.cpp"
+  "command": "/usr/bin/c++  -Dbustub_shared_EXPORTS -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -fPIC   -std=gnu++1z -o CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o -c /home/korpse/CPP/MyCmake/src/logging/log_manager.cpp",
+  "file": "/home/korpse/CPP/MyCmake/src/logging/log_manager.cpp"
 },
 {
   "directory": "/home/korpse/CPP/MyCmake/build/src",
-  "command": "/usr/bin/c++  -Dthirdparty_murmur3_EXPORTS -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/src/include -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -fPIC   -std=gnu++1z -o CMakeFiles/thirdparty_murmur3.dir/__/third_party/murmur3/MurmurHash3.cpp.o -c /home/korpse/CPP/MyCmake/third_party/murmur3/MurmurHash3.cpp",
+  "command": "/usr/bin/c++  -Dbustub_shared_EXPORTS -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -fPIC   -std=gnu++1z -o CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o -c /home/korpse/CPP/MyCmake/src/logging/records/log_record.cpp",
+  "file": "/home/korpse/CPP/MyCmake/src/logging/records/log_record.cpp"
+},
+{
+  "directory": "/home/korpse/CPP/MyCmake/build/src",
+  "command": "/usr/bin/c++  -Dthirdparty_murmur3_EXPORTS -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -fPIC   -std=gnu++1z -o CMakeFiles/thirdparty_murmur3.dir/__/third_party/murmur3/MurmurHash3.cpp.o -c /home/korpse/CPP/MyCmake/third_party/murmur3/MurmurHash3.cpp",
   "file": "/home/korpse/CPP/MyCmake/third_party/murmur3/MurmurHash3.cpp"
 },
 {
   "directory": "/home/korpse/CPP/MyCmake/build/test",
-  "command": "/usr/bin/c++   -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/src/include -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes   -std=gnu++1z -o CMakeFiles/my_test_test.dir/fulgurDB/my_test_test.cpp.o -c /home/korpse/CPP/MyCmake/test/fulgurDB/my_test_test.cpp",
-  "file": "/home/korpse/CPP/MyCmake/test/fulgurDB/my_test_test.cpp"
+  "command": "/usr/bin/c++   -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes   -std=gnu++1z -o CMakeFiles/log_records_test.dir/fulgurDB/log_records_test.cpp.o -c /home/korpse/CPP/MyCmake/test/fulgurDB/log_records_test.cpp",
+  "file": "/home/korpse/CPP/MyCmake/test/fulgurDB/log_records_test.cpp"
 }
 ]

@@ -6,5 +6,5 @@ CXX_FLAGS =  -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wn
 
 CXX_DEFINES = -Dbustub_shared_EXPORTS
 
-CXX_INCLUDES = -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/src/include -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party 
+CXX_INCLUDES = -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party 
 

@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-../src/include/fulgurDB/my_test.h
+../src/logging/records/my_test.h
 iostream
 -
 
 /home/korpse/CPP/MyCmake/test/fulgurDB/my_test_test.cpp
-fulgurDB/my_test.h
-/home/korpse/CPP/MyCmake/test/fulgurDB/fulgurDB/my_test.h
+logging/records/my_test.h
+/home/korpse/CPP/MyCmake/test/fulgurDB/logging/records/my_test.h
 gtest/gtest.h
 /home/korpse/CPP/MyCmake/test/fulgurDB/gtest/gtest.h
 

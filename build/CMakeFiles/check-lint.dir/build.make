@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/korpse/CPP/MyCmake/build
 include CMakeFiles/check-lint.dir/progress.make
 
 CMakeFiles/check-lint:
-	echo '/home/korpse/CPP/MyCmake/src/include/fulgurDB/my_test.h /home/korpse/CPP/MyCmake/src/fulgurDB/my_test.cpp /home/korpse/CPP/MyCmake/test/fulgurDB/my_test_test.cpp' | xargs -n12 -P8 /home/korpse/CPP/MyCmake/build_support/cpplint.py --verbose=2 --quiet --linelength=120 --filter=-legal/copyright,-build/header_guard
+	echo '/home/korpse/CPP/MyCmake/src/logging/log_manager.h /home/korpse/CPP/MyCmake/src/logging/records/log_record.h /home/korpse/CPP/MyCmake/src/logging/log_manager.cpp /home/korpse/CPP/MyCmake/src/logging/records/log_record.cpp /home/korpse/CPP/MyCmake/test/fulgurDB/log_records_test.cpp' | xargs -n12 -P8 /home/korpse/CPP/MyCmake/build_support/cpplint.py --verbose=2 --quiet --linelength=120 --filter=-legal/copyright,-build/header_guard
 
 check-lint: CMakeFiles/check-lint
 check-lint: CMakeFiles/check-lint.dir/build.make

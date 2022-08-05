@@ -84,5 +84,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/CMakeFiles/thirdparty_murmur3.dir/DependInfo.cmake"
   "test/CMakeFiles/check-tests.dir/DependInfo.cmake"
   "test/CMakeFiles/build-tests.dir/DependInfo.cmake"
-  "test/CMakeFiles/my_test_test.dir/DependInfo.cmake"
+  "test/CMakeFiles/log_records_test.dir/DependInfo.cmake"
   )

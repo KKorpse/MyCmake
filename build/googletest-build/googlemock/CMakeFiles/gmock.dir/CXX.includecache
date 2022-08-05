@@ -117,6 +117,10 @@ gmock/internal/custom/gmock-generated-actions.h
 googletest-src/googlemock/include/gmock/gmock/internal/custom/gmock-generated-actions.h
 
 googletest-src/googlemock/include/gmock/gmock-more-matchers.h
+ostream
+-
+string
+-
 gmock/gmock-matchers.h
 googletest-src/googlemock/include/gmock/gmock/gmock-matchers.h
 

@@ -224,32 +224,59 @@ __/third_party/murmur3/MurmurHash3.cpp.s:
 	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/thirdparty_murmur3.dir/build.make src/CMakeFiles/thirdparty_murmur3.dir/__/third_party/murmur3/MurmurHash3.cpp.s
 .PHONY : __/third_party/murmur3/MurmurHash3.cpp.s
 
-fulgurDB/my_test.o: fulgurDB/my_test.cpp.o
+logging/log_manager.o: logging/log_manager.cpp.o
 
-.PHONY : fulgurDB/my_test.o
+.PHONY : logging/log_manager.o
 
 # target to build an object file
-fulgurDB/my_test.cpp.o:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/fulgurDB/my_test.cpp.o
-.PHONY : fulgurDB/my_test.cpp.o
+logging/log_manager.cpp.o:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o
+.PHONY : logging/log_manager.cpp.o
 
-fulgurDB/my_test.i: fulgurDB/my_test.cpp.i
+logging/log_manager.i: logging/log_manager.cpp.i
 
-.PHONY : fulgurDB/my_test.i
+.PHONY : logging/log_manager.i
 
 # target to preprocess a source file
-fulgurDB/my_test.cpp.i:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/fulgurDB/my_test.cpp.i
-.PHONY : fulgurDB/my_test.cpp.i
+logging/log_manager.cpp.i:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.i
+.PHONY : logging/log_manager.cpp.i
 
-fulgurDB/my_test.s: fulgurDB/my_test.cpp.s
+logging/log_manager.s: logging/log_manager.cpp.s
 
-.PHONY : fulgurDB/my_test.s
+.PHONY : logging/log_manager.s
 
 # target to generate assembly for a file
-fulgurDB/my_test.cpp.s:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/fulgurDB/my_test.cpp.s
-.PHONY : fulgurDB/my_test.cpp.s
+logging/log_manager.cpp.s:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.s
+.PHONY : logging/log_manager.cpp.s
+
+logging/records/log_record.o: logging/records/log_record.cpp.o
+
+.PHONY : logging/records/log_record.o
+
+# target to build an object file
+logging/records/log_record.cpp.o:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o
+.PHONY : logging/records/log_record.cpp.o
+
+logging/records/log_record.i: logging/records/log_record.cpp.i
+
+.PHONY : logging/records/log_record.i
+
+# target to preprocess a source file
+logging/records/log_record.cpp.i:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.i
+.PHONY : logging/records/log_record.cpp.i
+
+logging/records/log_record.s: logging/records/log_record.cpp.s
+
+.PHONY : logging/records/log_record.s
+
+# target to generate assembly for a file
+logging/records/log_record.cpp.s:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.s
+.PHONY : logging/records/log_record.cpp.s
 
 # Help Target
 help:
@@ -269,9 +296,12 @@ help:
 	@echo "... __/third_party/murmur3/MurmurHash3.o"
 	@echo "... __/third_party/murmur3/MurmurHash3.i"
 	@echo "... __/third_party/murmur3/MurmurHash3.s"
-	@echo "... fulgurDB/my_test.o"
-	@echo "... fulgurDB/my_test.i"
-	@echo "... fulgurDB/my_test.s"
+	@echo "... logging/log_manager.o"
+	@echo "... logging/log_manager.i"
+	@echo "... logging/log_manager.s"
+	@echo "... logging/records/log_record.o"
+	@echo "... logging/records/log_record.i"
+	@echo "... logging/records/log_record.s"
 .PHONY : help
 
 

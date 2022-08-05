@@ -1,6 +1,6 @@
 #include <iostream>
 
-class FulgurDB {
+class LogManager {
  public:
   int PrintSomething(int a = 0);
 };
