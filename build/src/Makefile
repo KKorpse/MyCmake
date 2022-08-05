@@ -251,32 +251,32 @@ logging/log_manager.cpp.s:
 	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.s
 .PHONY : logging/log_manager.cpp.s
 
-logging/records/log_record.o: logging/records/log_record.cpp.o
+logging/log_record.o: logging/log_record.cpp.o
 
-.PHONY : logging/records/log_record.o
+.PHONY : logging/log_record.o
 
 # target to build an object file
-logging/records/log_record.cpp.o:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o
-.PHONY : logging/records/log_record.cpp.o
+logging/log_record.cpp.o:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o
+.PHONY : logging/log_record.cpp.o
 
-logging/records/log_record.i: logging/records/log_record.cpp.i
+logging/log_record.i: logging/log_record.cpp.i
 
-.PHONY : logging/records/log_record.i
+.PHONY : logging/log_record.i
 
 # target to preprocess a source file
-logging/records/log_record.cpp.i:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.i
-.PHONY : logging/records/log_record.cpp.i
+logging/log_record.cpp.i:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.i
+.PHONY : logging/log_record.cpp.i
 
-logging/records/log_record.s: logging/records/log_record.cpp.s
+logging/log_record.s: logging/log_record.cpp.s
 
-.PHONY : logging/records/log_record.s
+.PHONY : logging/log_record.s
 
 # target to generate assembly for a file
-logging/records/log_record.cpp.s:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.s
-.PHONY : logging/records/log_record.cpp.s
+logging/log_record.cpp.s:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.s
+.PHONY : logging/log_record.cpp.s
 
 # Help Target
 help:
@@ -299,9 +299,9 @@ help:
 	@echo "... logging/log_manager.o"
 	@echo "... logging/log_manager.i"
 	@echo "... logging/log_manager.s"
-	@echo "... logging/records/log_record.o"
-	@echo "... logging/records/log_record.i"
-	@echo "... logging/records/log_record.s"
+	@echo "... logging/log_record.o"
+	@echo "... logging/log_record.i"
+	@echo "... logging/log_record.s"
 .PHONY : help
 
 

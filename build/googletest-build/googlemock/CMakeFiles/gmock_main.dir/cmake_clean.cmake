@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/gmock_main.dir/src/gmock_main.cc.o"
-  "../../bin/libgmock_main.pdb"
+  "../../bin/libgmock_mainpdb_debug_postfix-NOTFOUND.pdb"
   "../../lib/libgmock_main.so.1.12.1"
   "../../lib/libgmock_main.so"
 )

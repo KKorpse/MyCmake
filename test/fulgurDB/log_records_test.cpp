@@ -10,11 +10,26 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "logging/records/log_record.h"
 #include "gtest/gtest.h"
+#include "logging/logger.h"
+
+#include "logging/log_record.h"
+
+#include <iostream>
+
+namespace fulgurDB {
+namespace logging {
 
 TEST(MyTestTest, SampleTest) {
-  LogRecord f;
-  int r = f.PrintSomething(10);
-  EXPECT_EQ(r, 10);
+  LOG_INFO("fuck you \n");
+  LogRecordType log_record_type = LOGRECORD_TYPE_INVALID;
+  cid_t txn_id = 1;
+  oid_t table_oid = 2;
+  ItemPointer tuple_location = ItemPointer(3, 3);
+
+  LogRecord L = LogRecord(log_record_type, txn_id, table_oid, tuple_location);
+  std::cout << L.GetInfo();
 }
+
+} // namespace logging
+} // namespace fulgurDB

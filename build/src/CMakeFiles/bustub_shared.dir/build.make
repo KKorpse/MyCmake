@@ -81,40 +81,40 @@ src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o.provides: src/CMakeFi
 src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o.provides.build: src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o
 
 
-src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
-src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o: ../src/logging/records/log_record.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/korpse/CPP/MyCmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o"
-	cd /home/korpse/CPP/MyCmake/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o -c /home/korpse/CPP/MyCmake/src/logging/records/log_record.cpp
+src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
+src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o: ../src/logging/log_record.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/korpse/CPP/MyCmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o"
+	cd /home/korpse/CPP/MyCmake/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o -c /home/korpse/CPP/MyCmake/src/logging/log_record.cpp
 
-src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.i"
-	cd /home/korpse/CPP/MyCmake/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/korpse/CPP/MyCmake/src/logging/records/log_record.cpp > CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.i
+src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bustub_shared.dir/logging/log_record.cpp.i"
+	cd /home/korpse/CPP/MyCmake/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/korpse/CPP/MyCmake/src/logging/log_record.cpp > CMakeFiles/bustub_shared.dir/logging/log_record.cpp.i
 
-src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.s"
-	cd /home/korpse/CPP/MyCmake/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/korpse/CPP/MyCmake/src/logging/records/log_record.cpp -o CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.s
+src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bustub_shared.dir/logging/log_record.cpp.s"
+	cd /home/korpse/CPP/MyCmake/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/korpse/CPP/MyCmake/src/logging/log_record.cpp -o CMakeFiles/bustub_shared.dir/logging/log_record.cpp.s
 
-src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o.requires:
+src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o.requires:
 
-.PHONY : src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o.requires
+.PHONY : src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o.requires
 
-src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o.provides: src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o.requires
-	$(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o.provides.build
-.PHONY : src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o.provides
+src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o.provides: src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o.provides.build
+.PHONY : src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o.provides
 
-src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o.provides.build: src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o
+src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o.provides.build: src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o
 
 
 # Object files for target bustub_shared
 bustub_shared_OBJECTS = \
 "CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o" \
-"CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o"
+"CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o"
 
 # External object files for target bustub_shared
 bustub_shared_EXTERNAL_OBJECTS =
 
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o
-lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o
+lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/build.make
 lib/libbustub_shared.so: lib/libthirdparty_murmur3.so
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/link.txt
@@ -127,7 +127,7 @@ src/CMakeFiles/bustub_shared.dir/build: lib/libbustub_shared.so
 .PHONY : src/CMakeFiles/bustub_shared.dir/build
 
 src/CMakeFiles/bustub_shared.dir/requires: src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o.requires
-src/CMakeFiles/bustub_shared.dir/requires: src/CMakeFiles/bustub_shared.dir/logging/records/log_record.cpp.o.requires
+src/CMakeFiles/bustub_shared.dir/requires: src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o.requires
 
 .PHONY : src/CMakeFiles/bustub_shared.dir/requires
 
