@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 #include "logging/otherone/item_pointer.h"
@@ -16,12 +18,14 @@ namespace logging {
 // tuple_data 实际上是tuple本身（不是序列化后的数据），其序列化是在LogRecord::serialize中实现（或者调用）的
 class LogRecord {
  public:
-  LogRecord(LogRecordType log_record_type, const cid_t txn_id, oid_t table_oid, ItemPointer tuple_location,
-            const void *tuple_data = nullptr, oid_t _db_oid = INVALID_OID)
+  LogRecord(LogRecordType log_record_type, const cid_t cid, oid_t table_oid,
+              ItemPointer insert_location, ItemPointer delete_location,
+              const void *tuple_data = nullptr, oid_t _db_oid = INVALID_OID)
       : log_record_type(log_record_type),
         txn_id(txn_id),
         table_oid(table_oid),
-        tuple_location(tuple_location),
+        insert_location(insert_location),
+        delete_location(delete_location),
         tuple_data(tuple_data),
         db_oid(_db_oid) {}
 
@@ -47,7 +51,9 @@ class LogRecord {
 
   oid_t GetDatabaseOid() const { return db_oid; }
 
-  ItemPointer GetTupleLocation(void) const { return tuple_location; }
+  ItemPointer GetInsertLocation(void) const { return insert_location; }
+
+  ItemPointer GetDeleteLocation(void) const { return delete_location; }
 
   char *GetMessage(void) const { return message; }
 
@@ -67,8 +73,11 @@ class LogRecord {
   // table id
   oid_t table_oid = INVALID_OID;
 
-  // tuple location
-  ItemPointer tuple_location;
+  // inserted tuple location
+  ItemPointer insert_location;
+
+  // deleted tuple location
+  ItemPointer delete_location;
 
   // serialized tuple data
   const void *tuple_data;

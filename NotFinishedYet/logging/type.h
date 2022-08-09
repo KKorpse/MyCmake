@@ -92,4 +92,23 @@ std::string LogRecordTypeToString(LogRecordType type) {
   return "INVALID";
 }
 
+//===--------------------------------------------------------------------===//
+// File Handle
+//===--------------------------------------------------------------------===//
+struct FileHandle {
+  // FILE pointer
+  FILE *file = nullptr;
+
+  // File descriptor
+  int fd;
+
+  // Size of the file
+  size_t size;
+
+  FileHandle() : file(nullptr), fd(0), size(0) {}
+
+  FileHandle(FILE *file, int fd, size_t size)
+      : file(file), fd(fd), size(size) {}
+};
+
 }  // namespace fulgurDB

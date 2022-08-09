@@ -21,13 +21,8 @@
 },
 {
   "directory": "/home/korpse/CPP/MyCmake/build/src",
-  "command": "/usr/bin/c++  -Dbustub_shared_EXPORTS -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -g -O0 -ggdb -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls -fPIC   -std=gnu++1z -o CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o -c /home/korpse/CPP/MyCmake/src/logging/log_manager.cpp",
-  "file": "/home/korpse/CPP/MyCmake/src/logging/log_manager.cpp"
-},
-{
-  "directory": "/home/korpse/CPP/MyCmake/build/src",
-  "command": "/usr/bin/c++  -Dbustub_shared_EXPORTS -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -g -O0 -ggdb -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls -fPIC   -std=gnu++1z -o CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o -c /home/korpse/CPP/MyCmake/src/logging/log_record.cpp",
-  "file": "/home/korpse/CPP/MyCmake/src/logging/log_record.cpp"
+  "command": "/usr/bin/c++  -Dbustub_shared_EXPORTS -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -g -O0 -ggdb -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls -fPIC   -std=gnu++1z -o CMakeFiles/bustub_shared.dir/logging/circular_buffer_pool.cpp.o -c /home/korpse/CPP/MyCmake/src/logging/circular_buffer_pool.cpp",
+  "file": "/home/korpse/CPP/MyCmake/src/logging/circular_buffer_pool.cpp"
 },
 {
   "directory": "/home/korpse/CPP/MyCmake/build/src",
@@ -38,5 +33,10 @@
   "directory": "/home/korpse/CPP/MyCmake/build/test",
   "command": "/usr/bin/c++   -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -g -O0 -ggdb -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls   -std=gnu++1z -o CMakeFiles/log_records_test.dir/fulgurDB/log_records_test.cpp.o -c /home/korpse/CPP/MyCmake/test/fulgurDB/log_records_test.cpp",
   "file": "/home/korpse/CPP/MyCmake/test/fulgurDB/log_records_test.cpp"
+},
+{
+  "directory": "/home/korpse/CPP/MyCmake/build/test",
+  "command": "/usr/bin/c++   -I/home/korpse/CPP/MyCmake/src -I/home/korpse/CPP/MyCmake/test/include -I/home/korpse/CPP/MyCmake/third_party -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googletest -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock/include -isystem /home/korpse/CPP/MyCmake/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -march=native -Wno-unused-parameter -Wno-attributes -g -O0 -ggdb -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls   -std=gnu++1z -o CMakeFiles/memory_speed_test.dir/fulgurDB/memory_speed_test.cpp.o -c /home/korpse/CPP/MyCmake/test/fulgurDB/memory_speed_test.cpp",
+  "file": "/home/korpse/CPP/MyCmake/test/fulgurDB/memory_speed_test.cpp"
 }
 ]

@@ -1,14 +1,4 @@
-//===----------------------------------------------------------------------===//
-//
-//                         BusTub
-//
-// buffer_pool_manager_instance_test.cpp
-//
-// Identification: test/buffer/buffer_pool_manager_test.cpp
-//
-// Copyright (c) 2015-2021, Carnegie Mellon University Database Group
-//
-//===----------------------------------------------------------------------===//
+
 
 #include "gtest/gtest.h"
 #include "logging/logger.h"
@@ -27,9 +17,11 @@ TEST(MyTestTest, SampleTest) {
   oid_t table_oid = 2;
   ItemPointer tuple_location = ItemPointer(3, 3);
 
-  LogRecord L = LogRecord(log_record_type, txn_id, table_oid, tuple_location);
+  LogRecord L = LogRecord(log_record_type, txn_id, table_oid, tuple_location, tuple_location);
   std::cout << L.GetInfo();
+
+  std::cout << UINT64_C(128) << std::endl;
 }
 
-} // namespace logging
-} // namespace fulgurDB
+}  // namespace logging
+}  // namespace fulgurDB

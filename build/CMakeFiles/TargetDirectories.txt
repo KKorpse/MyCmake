@@ -50,6 +50,7 @@
 /home/korpse/CPP/MyCmake/build/test/CMakeFiles/build-tests.dir
 /home/korpse/CPP/MyCmake/build/test/CMakeFiles/rebuild_cache.dir
 /home/korpse/CPP/MyCmake/build/test/CMakeFiles/log_records_test.dir
+/home/korpse/CPP/MyCmake/build/test/CMakeFiles/memory_speed_test.dir
 /home/korpse/CPP/MyCmake/build/test/CMakeFiles/install/local.dir
 /home/korpse/CPP/MyCmake/build/test/CMakeFiles/test.dir
 /home/korpse/CPP/MyCmake/build/test/CMakeFiles/edit_cache.dir

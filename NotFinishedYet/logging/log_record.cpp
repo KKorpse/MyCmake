@@ -1,14 +1,4 @@
-//===----------------------------------------------------------------------===//
-//
-//                         BusTub
-//
-// buffer_pool_manager_instance.cpp
-//
-// Identification: src/buffer/buffer_pool_manager.cpp
-//
-// Copyright (c) 2015-2021, Carnegie Mellon University Database Group
-//
-//===----------------------------------------------------------------------===//
+
 
 #include "logging/log_record.h"
 #include <sstream>

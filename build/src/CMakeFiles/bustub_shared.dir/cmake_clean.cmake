@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o"
-  "CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o"
+  "CMakeFiles/bustub_shared.dir/logging/circular_buffer_pool.cpp.o"
   "../lib/libbustub_shared.pdb"
   "../lib/libbustub_shared.so"
 )

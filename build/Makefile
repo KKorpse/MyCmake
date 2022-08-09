@@ -336,6 +336,19 @@ log_records_test/fast:
 	$(MAKE) -f test/CMakeFiles/log_records_test.dir/build.make test/CMakeFiles/log_records_test.dir/build
 .PHONY : log_records_test/fast
 
+#=============================================================================
+# Target rules for targets named memory_speed_test
+
+# Build rule for target.
+memory_speed_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 memory_speed_test
+.PHONY : memory_speed_test
+
+# fast build rule for target.
+memory_speed_test/fast:
+	$(MAKE) -f test/CMakeFiles/memory_speed_test.dir/build.make test/CMakeFiles/memory_speed_test.dir/build
+.PHONY : memory_speed_test/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -362,6 +375,7 @@ help:
 	@echo "... check-tests"
 	@echo "... build-tests"
 	@echo "... log_records_test"
+	@echo "... memory_speed_test"
 .PHONY : help
 
 

@@ -85,4 +85,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "test/CMakeFiles/check-tests.dir/DependInfo.cmake"
   "test/CMakeFiles/build-tests.dir/DependInfo.cmake"
   "test/CMakeFiles/log_records_test.dir/DependInfo.cmake"
+  "test/CMakeFiles/memory_speed_test.dir/DependInfo.cmake"
   )

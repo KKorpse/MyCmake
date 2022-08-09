@@ -224,59 +224,32 @@ __/third_party/murmur3/MurmurHash3.cpp.s:
 	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/thirdparty_murmur3.dir/build.make src/CMakeFiles/thirdparty_murmur3.dir/__/third_party/murmur3/MurmurHash3.cpp.s
 .PHONY : __/third_party/murmur3/MurmurHash3.cpp.s
 
-logging/log_manager.o: logging/log_manager.cpp.o
+logging/circular_buffer_pool.o: logging/circular_buffer_pool.cpp.o
 
-.PHONY : logging/log_manager.o
-
-# target to build an object file
-logging/log_manager.cpp.o:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.o
-.PHONY : logging/log_manager.cpp.o
-
-logging/log_manager.i: logging/log_manager.cpp.i
-
-.PHONY : logging/log_manager.i
-
-# target to preprocess a source file
-logging/log_manager.cpp.i:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.i
-.PHONY : logging/log_manager.cpp.i
-
-logging/log_manager.s: logging/log_manager.cpp.s
-
-.PHONY : logging/log_manager.s
-
-# target to generate assembly for a file
-logging/log_manager.cpp.s:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_manager.cpp.s
-.PHONY : logging/log_manager.cpp.s
-
-logging/log_record.o: logging/log_record.cpp.o
-
-.PHONY : logging/log_record.o
+.PHONY : logging/circular_buffer_pool.o
 
 # target to build an object file
-logging/log_record.cpp.o:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.o
-.PHONY : logging/log_record.cpp.o
+logging/circular_buffer_pool.cpp.o:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/circular_buffer_pool.cpp.o
+.PHONY : logging/circular_buffer_pool.cpp.o
 
-logging/log_record.i: logging/log_record.cpp.i
+logging/circular_buffer_pool.i: logging/circular_buffer_pool.cpp.i
 
-.PHONY : logging/log_record.i
+.PHONY : logging/circular_buffer_pool.i
 
 # target to preprocess a source file
-logging/log_record.cpp.i:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.i
-.PHONY : logging/log_record.cpp.i
+logging/circular_buffer_pool.cpp.i:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/circular_buffer_pool.cpp.i
+.PHONY : logging/circular_buffer_pool.cpp.i
 
-logging/log_record.s: logging/log_record.cpp.s
+logging/circular_buffer_pool.s: logging/circular_buffer_pool.cpp.s
 
-.PHONY : logging/log_record.s
+.PHONY : logging/circular_buffer_pool.s
 
 # target to generate assembly for a file
-logging/log_record.cpp.s:
-	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/log_record.cpp.s
-.PHONY : logging/log_record.cpp.s
+logging/circular_buffer_pool.cpp.s:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/logging/circular_buffer_pool.cpp.s
+.PHONY : logging/circular_buffer_pool.cpp.s
 
 # Help Target
 help:
@@ -296,12 +269,9 @@ help:
 	@echo "... __/third_party/murmur3/MurmurHash3.o"
 	@echo "... __/third_party/murmur3/MurmurHash3.i"
 	@echo "... __/third_party/murmur3/MurmurHash3.s"
-	@echo "... logging/log_manager.o"
-	@echo "... logging/log_manager.i"
-	@echo "... logging/log_manager.s"
-	@echo "... logging/log_record.o"
-	@echo "... logging/log_record.i"
-	@echo "... logging/log_record.s"
+	@echo "... logging/circular_buffer_pool.o"
+	@echo "... logging/circular_buffer_pool.i"
+	@echo "... logging/circular_buffer_pool.s"
 .PHONY : help
 
 

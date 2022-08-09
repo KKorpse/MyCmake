@@ -212,6 +212,21 @@ log_records_test/fast:
 	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/log_records_test.dir/build.make test/CMakeFiles/log_records_test.dir/build
 .PHONY : log_records_test/fast
 
+# Convenience name for target.
+test/CMakeFiles/memory_speed_test.dir/rule:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/memory_speed_test.dir/rule
+.PHONY : test/CMakeFiles/memory_speed_test.dir/rule
+
+# Convenience name for target.
+memory_speed_test: test/CMakeFiles/memory_speed_test.dir/rule
+
+.PHONY : memory_speed_test
+
+# fast build rule for target.
+memory_speed_test/fast:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/memory_speed_test.dir/build.make test/CMakeFiles/memory_speed_test.dir/build
+.PHONY : memory_speed_test/fast
+
 fulgurDB/log_records_test.o: fulgurDB/log_records_test.cpp.o
 
 .PHONY : fulgurDB/log_records_test.o
@@ -239,6 +254,33 @@ fulgurDB/log_records_test.cpp.s:
 	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/log_records_test.dir/build.make test/CMakeFiles/log_records_test.dir/fulgurDB/log_records_test.cpp.s
 .PHONY : fulgurDB/log_records_test.cpp.s
 
+fulgurDB/memory_speed_test.o: fulgurDB/memory_speed_test.cpp.o
+
+.PHONY : fulgurDB/memory_speed_test.o
+
+# target to build an object file
+fulgurDB/memory_speed_test.cpp.o:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/memory_speed_test.dir/build.make test/CMakeFiles/memory_speed_test.dir/fulgurDB/memory_speed_test.cpp.o
+.PHONY : fulgurDB/memory_speed_test.cpp.o
+
+fulgurDB/memory_speed_test.i: fulgurDB/memory_speed_test.cpp.i
+
+.PHONY : fulgurDB/memory_speed_test.i
+
+# target to preprocess a source file
+fulgurDB/memory_speed_test.cpp.i:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/memory_speed_test.dir/build.make test/CMakeFiles/memory_speed_test.dir/fulgurDB/memory_speed_test.cpp.i
+.PHONY : fulgurDB/memory_speed_test.cpp.i
+
+fulgurDB/memory_speed_test.s: fulgurDB/memory_speed_test.cpp.s
+
+.PHONY : fulgurDB/memory_speed_test.s
+
+# target to generate assembly for a file
+fulgurDB/memory_speed_test.cpp.s:
+	cd /home/korpse/CPP/MyCmake/build && $(MAKE) -f test/CMakeFiles/memory_speed_test.dir/build.make test/CMakeFiles/memory_speed_test.dir/fulgurDB/memory_speed_test.cpp.s
+.PHONY : fulgurDB/memory_speed_test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -252,12 +294,16 @@ help:
 	@echo "... build-tests"
 	@echo "... rebuild_cache"
 	@echo "... log_records_test"
+	@echo "... memory_speed_test"
 	@echo "... install/local"
 	@echo "... test"
 	@echo "... edit_cache"
 	@echo "... fulgurDB/log_records_test.o"
 	@echo "... fulgurDB/log_records_test.i"
 	@echo "... fulgurDB/log_records_test.s"
+	@echo "... fulgurDB/memory_speed_test.o"
+	@echo "... fulgurDB/memory_speed_test.i"
+	@echo "... fulgurDB/memory_speed_test.s"
 .PHONY : help
 
 
