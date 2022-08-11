@@ -5,19 +5,22 @@
 #include <mutex>
 #include <vector>
 
-#include "common/item_pointer.h"
-#include "common/platform.h"
-#include "logging/circular_buffer_pool.h"
-#include "logging/log_buffer.h"
+#include "logging/otherone/item_pointer.h"
+// #include "common/platform.h"
+#include "logging/bufferpool/circular_buffer_pool.h"
+#include "logging/bufferpool/log_buffer.h"
 #include "logging/log_record.h"
-#include "logging/logger.h"
-#include "type/types.h"
+#include "logging/loggers/logger.h"
+#include "logging/types.h"
 
-namespace peloton {
+// for Debug
+#include "logging/logger.h"
+
+namespace fulgurDB {
 namespace logging {
 
 //===--------------------------------------------------------------------===//
-// Backend Logger
+// Buffer Logger
 //===--------------------------------------------------------------------===//
 
 class BufferLogger : public Logger {
@@ -28,18 +31,15 @@ class BufferLogger : public Logger {
 
   ~BufferLogger();
 
-  static BufferLogger *GetBufferLogger(LoggingType logging_type);
-
-  //===--------------------------------------------------------------------===//
-  // Virtual Functions
-  //===--------------------------------------------------------------------===//
-
   // Log the given record
-  virtual void Log(LogRecord *record);
+  void Log(LogRecord *record);
 
-  std::vector<std::unique_ptr<LogBuffer>> &GetPreparedLogBuffers() { return prepared_buffers_for_flush; }
+  // 获取所有已经写入记录的缓存块（包括当前未写满的缓存块）
+  // 以引用的方式返回对应的max_commited_cid，min_cid，给 FlushLogger 使用
+  // std::vector<std::unique_ptr<LogBuffer>> &GetPreparedLogBuffers() { return prepared_buffers_for_flush; }
+  // std::pair<cid_t, cid_t> PrepareLogBuffers();
+  std::vector<std::unique_ptr<LogBuffer>> &GetLogBuffers(txn_id_t &lower_bound_id, txn_id_t &max_commited_id);
 
-  std::pair<cid_t, cid_t> PrepareLogBuffers();
 
   // Grant an empty buffer to use
   void GrantEmptyBuffer(std::unique_ptr<LogBuffer>);
@@ -50,36 +50,44 @@ class BufferLogger : public Logger {
   // Get FrontendLoggerID
   int GetFrontendLoggerID() { return frontend_logger_id; }
 
+
+    // method for frontend to inform waiting backends of a flush to disk
+  void FlushLoggerFlushed();
+  // wait for the flush of a frontend logger (for worker thread)
+  void WaitForFlush(txn_id_t cur_commit_txn_id);
+
   // set when the frontend is dying
-  void SetShutdown(bool);
+  // void SetShutdown(bool);
 
   // gets the Varlenpool used for log serialization
-  type::AbstractPool *GetVarlenPool() { return backend_pool.get(); }
+  // type::AbstractPool *GetVarlenPool() { return backend_pool.get(); }
 
  protected:
-  // the lock for the buffer being used currently
-  Spinlock log_buffer_lock;
+  // 在运输缓存池时使用，此时 BufferLogger 和 FlushLogger 分别是两个线程，需要互斥。
+  Spinlock cur_log_buffer_lock;
 
-  // temporary prepared_buffers_for_flush used by backend
+  // 用于将 persiste_buffer_pool 中的数据运输给 FLushLogger
   std::vector<std::unique_ptr<LogBuffer>> prepared_buffers_for_flush;
 
-  // commit id of the highest value committed so far
-  cid_t highest_logged_commit_message = INVALID_CID;
+  // 目前记录到的最大已经提交的记录的 txn_id
+  txn_id_t max_commit_txn_id = INVALID_TXN_ID;
+  txn_id_t max_seen_txn_id = INVALID_TXN_ID;
 
   // id of the corresponding frontend logger
-  // int frontend_logger_id = -1;  // default
+  int frontend_logger_id = -1;  // default
+
+  // the current buffer
+  std::unique_ptr<LogBuffer> cur_log_buffer_;
+  std::unique_ptr<BufferPool> available_buffer_pool_;
+  std::unique_ptr<BufferPool> persist_buffer_pool_;
+
+    // To wait for flush
+  std::mutex flush_notify_mutex;
+  std::condition_variable flush_notify_cv;
+  cid_t max_flushed_commit_id = 0;
 
   // max cid for the current log buffer
   // cid_t max_log_id_buffer = 0;
-
-  // the current buffer
-  std::unique_ptr<LogBuffer> log_buffer_;
-
-  // the pool of available buffers
-  std::unique_ptr<BufferPool> available_buffer_pool_;
-
-  // the pool of buffers to persist
-  std::unique_ptr<BufferPool> persist_buffer_pool_;
 
   // temporary serialization buffer
   // CopySerializeOutput output_buffer;
@@ -95,4 +103,4 @@ class BufferLogger : public Logger {
 };
 
 }  // namespace logging
-}  // namespace peloton
+}  // namespace fulgurDB

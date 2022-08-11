@@ -95,11 +95,11 @@ class LogManager {
   // // End the actual logging
   // bool EndLogging();
 
-  // method for frontend to inform waiting backends of a flush to disk
-  void FrontendLoggerFlushed();
+  // // method for frontend to inform waiting backends of a flush to disk
+  // void FrontendLoggerFlushed();
 
-  // wait for the flush of a frontend logger (for worker thread)
-  void WaitForFlush(cid_t cid);
+  // // wait for the flush of a frontend logger (for worker thread)
+  // void WaitForFlush(cid_t cid);
 
   // // get the current persistent flushed commit
   // cid_t GetPersistentFlushedCommitId();

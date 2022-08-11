@@ -17,11 +17,11 @@ namespace fulgurDB {
 
 namespace logging {
 
-typedef std::chrono::high_resolution_clock Clock;
+// typedef std::chrono::high_resolution_clock Clock;
 
-typedef std::chrono::microseconds Micros;
+// typedef std::chrono::microseconds Micros;
 
-typedef std::chrono::time_point<Clock> TimePoint;
+// typedef std::chrono::time_point<Clock> TimePoint;
 //===--------------------------------------------------------------------===//
 // Write Ahead Frontend Logger
 //===--------------------------------------------------------------------===//
@@ -38,6 +38,13 @@ class FlushLogger : public FrontendLogger {
 
 
   void MainLoop(void);
+
+  static FrontendLogger *GetFlushLogger(LoggingType logging_type,
+                                           bool test_mode = false);
+
+  void CollectLogRecordsFromBackendLoggers(void);
+
+  void AddBackendLogger(BackendLogger *backend_logger);
 
   void FlushLogRecords(void);
 
@@ -63,10 +70,10 @@ class FlushLogger : public FrontendLogger {
   bool FileSwitchCondIsTrue();
 
   void InitLogDirectory();
+
   //===--------------------------------------------------------------------===//
   // Member Variables
   //===--------------------------------------------------------------------===//
-  
 
   // Associated backend loggers
   std::vector<BackendLogger *> backend_loggers;
@@ -89,14 +96,14 @@ class FlushLogger : public FrontendLogger {
 
   std::string fulgurDB_log_directory;
 
-  cid_t max_log_id_file = INVALID_CID;
+  // cid_t max_log_id_file = INVALID_CID;
 
 
   bool should_create_new_file = false;
 
-  TimePoint last_flush = Clock::now();
+  // TimePoint last_flush = Clock::now();
 
-  Micros flush_frequency{fulgurDB_flush_frequency_micros};
+  // Micros flush_frequency{fulgurDB_flush_frequency_micros};
 };
 
 }  // namespace logging
