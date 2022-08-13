@@ -58,12 +58,6 @@ FlushLogger::FlushLogger() {
 
 FlushLogger::FlushLogger(std::string log_dir)
     : furgurDB_log_directory(log_dir) {
-  // LOG_TRACE("Instantiating wal_fel with log directory: %s", log_dir.c_str());
-  
-  // allocate pool
-  // recovery_pool = new type::EphemeralPool();
-
-  // InitSelf();
 }
 
 FlushLogger::~FlushLogger() {
@@ -98,6 +92,90 @@ FlushLogger::~FlushLogger() {
   // for (auto log_file : log_files_) delete log_file;
   // // clean up pool
   // delete recovery_pool;
+}
+
+/**
+ * @brief MainLoop
+ */
+void FrontendLogger::MainLoop(void) {
+  auto &log_manager = LogManager::GetInstance();
+
+  /////////////////////////////////////////////////////////////////////
+  // STANDBY MODE
+  /////////////////////////////////////////////////////////////////////
+
+  LOG_TRACE("FrontendLogger Standby Mode");
+
+  // Standby before we need to do RECOVERY
+  log_manager.WaitForModeTransition(LoggingStatusType::STANDBY, false);
+
+  // Do recovery if we can, otherwise terminate
+  switch (log_manager.GetLoggingStatus()) {
+    case LoggingStatusType::RECOVERY: {
+      LOG_TRACE("Frontendlogger Recovery Mode");
+
+      /////////////////////////////////////////////////////////////////////
+      // RECOVERY MODE
+      /////////////////////////////////////////////////////////////////////
+
+      // First, do recovery if needed
+      LOG_TRACE("Invoking DoRecovery");
+      DoRecovery();
+      LOG_TRACE("DoRecovery done");
+
+      // Now, enter LOGGING mode
+      // log_manager.SetLoggingStatus(LoggingStatusType::LOGGING);
+      // Notify log manager that this frontend logger has completed recovery
+      log_manager.NotifyRecoveryDone();
+
+      // Now wait until the other frontend loggers also complete their recovery
+      log_manager.WaitForModeTransition(LoggingStatusType::RECOVERY, false);
+
+      break;
+    }
+
+    case LoggingStatusType::LOGGING: {
+      LOG_TRACE("Frontendlogger Logging Mode");
+    } break;
+
+    default:
+      break;
+  }
+
+  /////////////////////////////////////////////////////////////////////
+  // LOGGING MODE
+  /////////////////////////////////////////////////////////////////////
+
+  // Periodically, wake up and do logging
+  while (log_manager.GetLoggingStatus() == LoggingStatusType::LOGGING) {
+    // Collect LogRecords from all backend loggers
+    // LOG_TRACE("Log manager: Invoking CollectLogRecordsFromBackendLoggers");
+    CollectLogRecordsFromBackendLoggers();
+
+    // Flush the data to the file
+    // LOG_TRACE("Log manager: Invoking FlushLogRecords");
+    FlushLogRecords();
+
+    // update the global max flushed ID (only distinguished logger does this)
+    UpdateGlobalMaxFlushId();
+  }
+
+  /////////////////////////////////////////////////////////////////////
+  // TERMINATE MODE
+  /////////////////////////////////////////////////////////////////////
+
+  // flush any remaining log records
+  CollectLogRecordsFromBackendLoggers();
+  FlushLogRecords();
+
+  /////////////////////////////////////////////////////////////////////
+  // SLEEP MODE
+  /////////////////////////////////////////////////////////////////////
+
+  LOG_TRACE("Frontendlogger Sleep Mode");
+
+  // Setting frontend logger status to sleep
+  log_manager.SetLoggingStatus(LoggingStatusType::SLEEP);
 }
 
 /**

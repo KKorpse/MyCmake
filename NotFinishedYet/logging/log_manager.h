@@ -6,10 +6,9 @@
 #include <vector>
 
 #include "logging/type.h"
-// #include "backend_logger.h"
+#include "logging/loggers/buffer_logger.h"
 // #include "concurrency/transaction.h"
-// #include "frontend_logger.h"
-// #include "loggers/wal_frontend_logger.h"
+#include "logging/loggers/flush_logger.h"
 // #include "logging/logger.h"
 
 #define DEFAULT_NUM_FRONTEND_LOGGERS 1
@@ -36,8 +35,8 @@ enum class RecordPosition {
 // Log Manager
 //===--------------------------------------------------------------------===//
 
-#define LOG_FILE_LEN 1024 * UINT64_C(128)  // 128 MB = 128 * 1024 * 1024 B
-
+#define LOG_FILE_LEN UINT64_C(128) * 1024 * 1024 // 128MB
+#define LOG_BUFFER_LEN UINT64_C(128) * 1024 // 128KB
 /**
  * Global Log Manager
  */
@@ -95,15 +94,6 @@ class LogManager {
   // // End the actual logging
   // bool EndLogging();
 
-  // // method for frontend to inform waiting backends of a flush to disk
-  // void FrontendLoggerFlushed();
-
-  // // wait for the flush of a frontend logger (for worker thread)
-  // void WaitForFlush(cid_t cid);
-
-  // // get the current persistent flushed commit
-  // cid_t GetPersistentFlushedCommitId();
-
   // // called by frontends when recovery is complete.(for a particular frontend)
   // void NotifyRecoveryDone();
 
@@ -124,10 +114,6 @@ class LogManager {
 
   // // returns true if a frontend logger is active
   // bool ContainsFrontendLogger(void);
-
-  // // get a backend logger
-  // // can give a hint of the frontend logger
-  // BackendLogger *GetBackendLogger(unsigned int hint = 0);
 
   // // set the name of the log file (only used in wbl)
   // void SetLogFileName(std::string log_file);
@@ -162,9 +148,10 @@ class LogManager {
   // // remove all frontend loggers (used for testing)
   // void DropFrontendLoggers();
 
-  // // perpare to log must be called before a commit id is generated for a
-  // // transaction
-  // void PrepareLogging();
+
+  // 在 TimestampOrderingTransactionManager::BeginTransaction 中被调用
+  // 负责为此线程分配 BufferLogger()
+  void PrepareLogging();
 
   // log an update
   void LogUpdate(txn_id_t txn_id, const ItemPointer &old_version, const ItemPointer &new_version,
@@ -178,6 +165,8 @@ class LogManager {
   void LogDelete(txn_id_t txn_id, const ItemPointer &delete_location,
                  RecordPosition record_position = RecordPosition::TRANSACTION_NORMAL);
 
+
+  BackendLogger *GetBufferLogger(unsigned int hint = 0);
   // // commit a transaction and wait until stable xxxxxxxxxxxxxxxxxxxx
   // void LogWaitForCommit(cid_t commit_id); xxxxxxxxxxxxxxxxxxxxx
 
@@ -192,7 +181,7 @@ class LogManager {
   //   return global_max_flushed_id_for_recovery;
   // }
 
-  // // set the max flushed id for recovery
+  // // set the max flushed id for recovery Back
   // void SetGlobalMaxFlushedIdForRecovery(cid_t new_max) {
   //   global_max_flushed_id_for_recovery = new_max;
   // }
@@ -241,39 +230,32 @@ class LogManager {
   // Data members
   //===--------------------------------------------------------------------===//
 
-  // static configurations for logging
+
+  // LogManager 状态相关
+  LoggingStatusType logging_status = LoggingStatusType::INVALID;
+  std::mutex logging_status_mutex;
+  std::condition_variable logging_status_cv;
+
+  // FlushLogger 相关
+  std::vector<std::unique_ptr<FlushLogger>> flush_loggers;
+  unsigned int num_frontend_loggers_ = DEFAULT_NUM_FRONTEND_LOGGERS;
+  int frontend_logger_assign_counter; // round robin counter for frontend logger assignment
+
+  // 文件大小 以及 Buffer 大小
+  size_t log_file_size_limit_ = LOG_FILE_LEN; // 128MB
+  size_t log_buffer_capacity_ = LOG_BUFFER_LEN; // 128KB
+
+  // 日志记录的硬件类型
   LoggingType logging_type_ = LoggingType::INVALID;
+
+
+
+
 
   // test mode will not log to disk
   bool test_mode_ = false;
 
-  // numbe of frontend loggers
-  unsigned int num_frontend_loggers_ = DEFAULT_NUM_FRONTEND_LOGGERS;
-
-  // set the strategy for mapping frontend loggers to worker threads
-  LoggerMappingStrategyType logger_mapping_strategy_ = LoggerMappingStrategyType::INVALID;
-
-  // default log file size
-  size_t log_file_size_limit_ = LOG_FILE_LEN;
-
-  // default capacity for log buffer
-  size_t log_buffer_capacity_ = LOG_FILE_LEN;
-
-  // There is only one frontend_logger of some type
-  // either write ahead or write behind logging
-  std::vector<std::unique_ptr<FrontendLogger>> frontend_loggers;
-
-  LoggingStatusType logging_status = LoggingStatusType::INVALID;
-
   bool prepared_recovery_ = false;
-
-  // To synch the status
-  std::mutex logging_status_mutex;
-  std::condition_variable logging_status_cv;
-
-  // To wait for flush
-  std::mutex flush_notify_mutex;
-  std::condition_variable flush_notify_cv;
 
   // To update catalog and txn managers
   std::mutex update_managers_mutex;
@@ -291,8 +273,7 @@ class LogManager {
 
   std::string log_directory_name;
 
-  // round robin counter for frontend logger assignment
-  int frontend_logger_assign_counter;
+
 
   cid_t global_max_flushed_id_for_recovery = UINT64_MAX;
 

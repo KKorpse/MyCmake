@@ -70,8 +70,8 @@ class BufferLogger : public Logger {
   std::vector<std::unique_ptr<LogBuffer>> prepared_buffers_for_flush;
 
   // 目前记录到的最大已经提交的记录的 txn_id
-  txn_id_t max_commit_txn_id = INVALID_TXN_ID;
-  txn_id_t max_seen_txn_id = INVALID_TXN_ID;
+  cid_t max_commit_txn_id = INVALID_TXN_ID;
+  cid_t max_seen_txn_id = INVALID_TXN_ID;
 
   // id of the corresponding frontend logger
   int frontend_logger_id = -1;  // default

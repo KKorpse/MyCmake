@@ -26,11 +26,9 @@ namespace logging {
 // Write Ahead Frontend Logger
 //===--------------------------------------------------------------------===//
 
-class FlushLogger : public FrontendLogger {
+class FlushLogger : public Logger {
  public:
   FlushLogger(void);
-
-  FlushLogger(bool for_testing);
 
   FlushLogger(std::string log_dir);
 
@@ -39,8 +37,6 @@ class FlushLogger : public FrontendLogger {
 
   void MainLoop(void);
 
-  static FrontendLogger *GetFlushLogger(LoggingType logging_type,
-                                           bool test_mode = false);
 
   void CollectLogRecordsFromBackendLoggers(void);
 
@@ -94,7 +90,7 @@ class FlushLogger : public FrontendLogger {
 
   int log_file_cursor_;
 
-  std::string fulgurDB_log_directory;
+  std::string furgurDB_log_directory;
 
   // cid_t max_log_id_file = INVALID_CID;
 

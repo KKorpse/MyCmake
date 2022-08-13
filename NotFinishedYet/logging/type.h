@@ -111,4 +111,14 @@ struct FileHandle {
       : file(file), fd(fd), size(size) {}
 };
 
+// Data stored in AAA
+// Log stored in BBB
+enum class LoggingType {
+  INVALID = 0,
+
+  NVM_WAL = 1,
+  SSD_WAL = 2,
+  HDD_WAL = 3,
+};
+
 }  // namespace fulgurDB
