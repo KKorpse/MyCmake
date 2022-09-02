@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <condition_variable>
@@ -31,38 +30,53 @@ class BufferLogger : public Logger {
 
   ~BufferLogger();
 
+  //===--------------------------------------------------------------------===//
+  // 主要函数
+  //===--------------------------------------------------------------------===//
+
   // Log the given record
   void Log(LogRecord *record);
 
+
+  //===--------------------------------------------------------------------===//
+  // FlushLogger 相关
+  //===--------------------------------------------------------------------===//
+
   // 获取所有已经写入记录的缓存块（包括当前未写满的缓存块）
   // 以引用的方式返回对应的max_commited_cid，min_cid，给 FlushLogger 使用
-  // std::vector<std::unique_ptr<LogBuffer>> &GetPreparedLogBuffers() { return prepared_buffers_for_flush; }
-  // std::pair<cid_t, cid_t> PrepareLogBuffers();
-  std::vector<std::unique_ptr<LogBuffer>> &GetLogBuffers(txn_id_t &lower_bound_id, txn_id_t &max_commited_id);
+  // lower_bound_id 暂时不知道怎么使用
+  std::vector<std::unique_ptr<LogBuffer>> &GetLogBuffers(txn_id_t &min_committed_id, txn_id_t &max_committed_id);
 
-
-  // Grant an empty buffer to use
+  // 回收使用后的LogBuffer，避免重新分配内存
   void GrantEmptyBuffer(std::unique_ptr<LogBuffer>);
 
-  // Set FrontendLoggerID
-  void SetFrontendLoggerID(int id) { frontend_logger_id = id; }
 
-  // Get FrontendLoggerID
-  int GetFrontendLoggerID() { return frontend_logger_id; }
-
-
-    // method for frontend to inform waiting backends of a flush to disk
+  // LogManager 在收到 COMMIT 类型的记录时，调用 WaitForFlush()
+  // FlushLogger 每批次刷新时， 在 GetLogBuffers() 中设置 max_flushed_commit_id 为 max_seen_txn_id（后者在log()中更新）
+  // FlushLogger 结束刷新时，调用对应 BufferLogger 的 WaitForFlush()
+  // 这样的设置理论上比让所有 BufferLogger 等待 global_max_cid 效率高一些
   void FlushLoggerFlushed();
-  // wait for the flush of a frontend logger (for worker thread)
   void WaitForFlush(txn_id_t cur_commit_txn_id);
 
-  // set when the frontend is dying
-  // void SetShutdown(bool);
+  //===--------------------------------------------------------------------===//
+  // Accecer
+  //===--------------------------------------------------------------------===//
 
-  // gets the Varlenpool used for log serialization
-  // type::AbstractPool *GetVarlenPool() { return backend_pool.get(); }
+  // FlushLoggerID
+  void SetFlushLoggerID(int id) { this->flush_logger_id = id; }
+  int GetFlushLoggerID() { return this->flush_logger_id; }
 
- protected:
+  cid_t GetLowerBoundary() { return this->lower_boundary; }
+  void SetLowerBoundary( cid_t lower_boundary) { this->lower_boundary = lower_boundary; }
+
+
+  // 需要一个解决序号用完的方案
+  // void SetLoggingCidLowerBound(cid_t cid) {
+  //   logging_cid_lower_bound = cid;
+  //   highest_logged_commit_message = INVALID_CID;
+  // }
+
+ private:
   // 在运输缓存池时使用，此时 BufferLogger 和 FlushLogger 分别是两个线程，需要互斥。
   Spinlock cur_log_buffer_lock;
 
@@ -73,33 +87,21 @@ class BufferLogger : public Logger {
   cid_t max_commit_txn_id = INVALID_TXN_ID;
   cid_t max_seen_txn_id = INVALID_TXN_ID;
 
-  // id of the corresponding frontend logger
-  int frontend_logger_id = -1;  // default
+  // FlushLgger 绑定
+  int Flush_logger_id = -1;
 
-  // the current buffer
-  std::unique_ptr<LogBuffer> cur_log_buffer_;
+  //Buffer 相关
+  std::unique_ptr<LogBuffer> cur_log_buffer_;   // the current buffer，当前 LogBuffer 块
   std::unique_ptr<BufferPool> available_buffer_pool_;
   std::unique_ptr<BufferPool> persist_buffer_pool_;
 
-    // To wait for flush
+  // 等待刷新用的锁
   std::mutex flush_notify_mutex;
   std::condition_variable flush_notify_cv;
   cid_t max_flushed_commit_id = 0;
 
-  // max cid for the current log buffer
-  // cid_t max_log_id_buffer = 0;
-
-  // temporary serialization buffer
-  // CopySerializeOutput output_buffer;
-
-  // lower bound for values this backend may commit
-  // cid_t logging_cid_lower_bound = INVALID_CID;
-
-  // varlen pool for serialization
-  // std::unique_ptr<type::AbstractPool> backend_pool;
-
-  // shutdown flag
-  // bool shutdown = false;
+  cid_t max_seen_txn_id = 0;
+  cid_t lower_boundary_cid = 0;
 };
 
 }  // namespace logging

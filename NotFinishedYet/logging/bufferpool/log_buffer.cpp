@@ -6,14 +6,13 @@
 
 #include <cstring>
 
-namespace peloton {
+namespace fulgurDB {
 namespace logging {
 
 //===--------------------------------------------------------------------===//
 // Log Buffer
 //===--------------------------------------------------------------------===//
-LogBuffer::LogBuffer(BackendLogger *backend_logger)
-    : backend_logger_(backend_logger) {
+LogBuffer::LogBuffer() {
   capacity_ = LogManager::GetInstance().GetLogBufferCapacity();
   elastic_data_.reset(new char[capacity_]);
 }
@@ -45,4 +44,4 @@ bool LogBuffer::WriteData(char *data, size_t len) {
 }
 
 }  // namespace logging
-}  // namespace peloton
+}  // namespace fulgurDB

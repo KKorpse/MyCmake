@@ -6,27 +6,21 @@
 namespace fulgurDB {
 namespace logging {
 
-/**
- * @brief Serialize given data
- * @return true if we serialize data otherwise false
- */
+// TODO
 bool LogRecord::Serialize() {
-  // TODO
+  /*
+
+  */
   return false;
 }
 
-/**
- * @brief Serialize LogRecordHeader
- */
+// TODO:
 void LogRecord::SerializeHeader() {
-  // TODO:
 }
 
-/**
- * @brief Deserialize LogRecordHeader
- */
+// TODO
 void LogRecord::DeserializeHeader() {
-  // TODO
+
 }
 
 const std::string LogRecord::GetInfo() const {

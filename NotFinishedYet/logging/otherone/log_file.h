@@ -2,7 +2,6 @@
 #pragma once
 
 #include "logging/type.h"
-// #include "common/logger.h"
 
 namespace fulgerDB {
 namespace logging {

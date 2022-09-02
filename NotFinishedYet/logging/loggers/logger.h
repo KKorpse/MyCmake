@@ -13,7 +13,7 @@ class Logger {
  private:
   // 不同种类的 Logger id 可以冲突
   // FlushLogger 的 id 由 LogManager 设置，每个 FlushLogger 单独一个线程
-  int logger_id;
+  unsigned int logger_id;
 
   // 用于生成日志文件名，其中 directory 由 LogManager 设置
   /*

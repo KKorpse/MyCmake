@@ -1,15 +1,3 @@
-//===----------------------------------------------------------------------===//
-//
-//                         Peloton
-//
-// circular_buffer_pool.cpp
-//
-// Identification: src/logging/circular_buffer_pool.cpp
-//
-// Copyright (c) 2015-16, Carnegie Mellon University Database Group
-//
-//===----------------------------------------------------------------------===//
-
 
 #include <atomic>
 #include <xmmintrin.h>
@@ -17,7 +5,7 @@
 #include "logging/circular_buffer_pool.h"
 #include "common/logger.h"
 
-namespace peloton {
+namespace fulgurDB {
 namespace logging {
 
 //===--------------------------------------------------------------------===//
@@ -72,4 +60,4 @@ unsigned int CircularBufferPool::GetSize() {
 }
 
 }  // namespace logging
-}  // namespace peloton
+}  // namespace fulgurDB

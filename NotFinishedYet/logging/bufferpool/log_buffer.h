@@ -1,27 +1,3 @@
-//===----------------------------------------------------------------------===//
-//
-//                         Peloton
-//
-// log_buffer.h
-//
-// Identification: src/include/logging/log_buffer.h
-//
-// Copyright (c) 2015-16, Carnegie Mellon University Database Group
-//
-//===----------------------------------------------------------------------===//
-
-
-/*-------------------------------------------------------------------------
- *
- * log_buffer.h
- * file description
- *
- * Copyright(c) 2015, CMU
- *
- * /peloton/src/logging/log_buffer.h
- *
- *-------------------------------------------------------------------------
- */
 
 #pragma once
 
@@ -31,17 +7,18 @@
 #include "logging/log_record.h"
 #include "common/macros.h"
 
-namespace peloton {
+namespace fulgurDB {
 namespace logging {
 
-class BackendLogger;
+// class BufferLogger;
 
 //===--------------------------------------------------------------------===//
 // Log Buffer
 //===--------------------------------------------------------------------===//
 class LogBuffer {
  public:
-  LogBuffer(BackendLogger *);
+  // LogBuffer(BufferLogger *);
+  LogBuffer();
 
   ~LogBuffer(void){};
 
@@ -65,7 +42,7 @@ class LogBuffer {
 
   inline cid_t GetMaxLogId() { return max_log_id; }
 
-  inline BackendLogger *GetBackendLogger() { return backend_logger_; }
+  // inline BufferLogger *GetBufferLogger() { return buffer_logger_; }
 
  private:
   // write data to the log buffer, return false if not enough space
@@ -80,11 +57,11 @@ class LogBuffer {
   // Dynamically adjusted data array
   std::unique_ptr<char[]> elastic_data_;
 
-  BackendLogger *backend_logger_;
+  // BufferLogger *buffer_logger_;
 
   // maximum log id seen so far
   cid_t max_log_id = 0;
 };
 
 }  // namespace logging
-}  // namespace peloton
+}  // namespace fulgurDB

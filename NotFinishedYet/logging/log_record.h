@@ -31,17 +31,21 @@ class LogRecord {
 
   ~LogRecord() { delete[] message; }
 
+  // 1.序列化 header
+  // 2.序列化 body（Tuple本身）
   bool Serialize();
 
+  // 序列化头部
   void SerializeHeader();
 
+  // 反序列化头部
   void DeserializeHeader();
 
-  // 将信息string化，用于debug
+  // 将信息string化，用于debug中的打印
   const std::string GetInfo() const;
 
   //===--------------------------------------------------------------------===//
-  // 无需在cpp中实现的工具类函数
+  // Accesser
   //===--------------------------------------------------------------------===//
   LogRecordType GetType() const { return log_record_type; }
 
@@ -59,10 +63,6 @@ class LogRecord {
 
   size_t GetMessageLength(void) const { return message_length; }
 
-  // ItemPointer GetDeleteLocation(void) const { return delete_location; }
-  // void SetTuple(storage::Tuple *tuple);
-  // storage::Tuple *GetTuple();
-  // static size_t GetTupleRecordSize(void);
 
  private:
   LogRecordType log_record_type = LOGRECORD_TYPE_INVALID;

@@ -1,27 +1,3 @@
-//===----------------------------------------------------------------------===//
-//
-//                         Peloton
-//
-// circular_buffer_pool.h
-//
-// Identification: src/include/logging/circular_buffer_pool.h
-//
-// Copyright (c) 2015-16, Carnegie Mellon University Database Group
-//
-//===----------------------------------------------------------------------===//
-
-
-/*-------------------------------------------------------------------------
- *
- * circular_buffer_pool.h
- * file description
- *
- * Copyright(c) 2015, CMU
- *
- * /peloton/src/logging/circular_buffer_pool.h
- *
- *-------------------------------------------------------------------------
- */
 
 #pragma once
 
@@ -34,7 +10,7 @@
 #define BUFFER_POOL_MASK (BUFFER_POOL_SIZE - 1)
 #define GET_BUFFER_POOL_INDEX(a) (a & BUFFER_POOL_MASK)
 
-namespace peloton {
+namespace fulgurDB {
 namespace logging {
 
 //===--------------------------------------------------------------------===//
@@ -62,4 +38,4 @@ class CircularBufferPool : public BufferPool {
 };
 
 }  // namespace logging
-}  // namespace peloton
+}  // namespace fulgurDB

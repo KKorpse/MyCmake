@@ -7,27 +7,33 @@
 namespace fulgurDB {
 
 //===--------------------------------------------------------------------===//
-// Type definitions.
+// Number Type
 //===--------------------------------------------------------------------===//
 
 typedef uint32_t oid_t;
 
 static const oid_t INVALID_OID = std::numeric_limits<oid_t>::max();
-// For transaction id
 
+
+// For transaction id
 typedef uint64_t txn_id_t;
 
 static const txn_id_t INVALID_TXN_ID = 0;
 
 static const txn_id_t MAX_TXN_ID = std::numeric_limits<txn_id_t>::max();
 
-// For commit id
 
+// For commit id
 typedef uint64_t cid_t;
 
 static const cid_t INVALID_CID = 0;
 
 static const cid_t MAX_CID = std::numeric_limits<cid_t>::max();
+
+
+//===--------------------------------------------------------------------===//
+// Log Record Type 
+//===--------------------------------------------------------------------===//
 
 enum LogRecordType : unsigned char {
   LOGRECORD_TYPE_INVALID = '0',
@@ -52,6 +58,7 @@ enum LogRecordType : unsigned char {
   // includes max persistent commit_id
   LOGRECORD_TYPE_ITERATION_DELIMITER = 'x',
 };
+
 
 std::string LogRecordTypeToString(LogRecordType type) {
   switch (type) {
@@ -92,6 +99,7 @@ std::string LogRecordTypeToString(LogRecordType type) {
   return "INVALID";
 }
 
+
 //===--------------------------------------------------------------------===//
 // File Handle
 //===--------------------------------------------------------------------===//
@@ -111,6 +119,11 @@ struct FileHandle {
       : file(file), fd(fd), size(size) {}
 };
 
+
+//===--------------------------------------------------------------------===//
+// Logging Type
+//===--------------------------------------------------------------------===//
+
 // Data stored in AAA
 // Log stored in BBB
 enum class LoggingType {
@@ -120,5 +133,21 @@ enum class LoggingType {
   SSD_WAL = 2,
   HDD_WAL = 3,
 };
+
+
+//===--------------------------------------------------------------------===//
+// Logging Status Type
+//===--------------------------------------------------------------------===//
+
+enum class LoggingStatusType {
+  INVALID = INVALID_TYPE_ID,
+  STANDBY = 1,
+  RECOVERY = 2,
+  LOGGING = 3,
+  TERMINATE = 4,
+  SLEEP = 5
+};
+
+
 
 }  // namespace fulgurDB

@@ -7,29 +7,29 @@
 
 #include "logging/type.h"
 #include "logging/loggers/buffer_logger.h"
-// #include "concurrency/transaction.h"
 #include "logging/loggers/flush_logger.h"
 // #include "logging/logger.h"
+// #include "concurrency/transaction.h"
 
-#define DEFAULT_NUM_FRONTEND_LOGGERS 1
+#define DEFAULT_NUM_Flush_LOGGERS 1
+#define DEFAULT_NUM_RECOVERY_LOGGERS 1
 
-//===--------------------------------------------------------------------===//
-// GUC Variables
-//===--------------------------------------------------------------------===//
-// extern peloton::LoggingType peloton_logging_mode;
 
 namespace fulgurDB {
 namespace logging {
 
+thread_local static BackendLogger *backend_logger = nullptr;
+
 // 删减了logBeginTransaction 和 LogCommitTransction，用传入的此参数判断
 // 是否是Begin 或者 Commit，减少了logrecord的数量
-enum class RecordPosition {
+enum RecordPosition {
   TRANSACTION_BEGIN = 1,
 
   TRANSACTION_COMMIT = 2,
 
   TRANSACTION_NORMAL = 3,
 };
+
 
 //===--------------------------------------------------------------------===//
 // Log Manager
@@ -47,189 +47,110 @@ class LogManager {
   LogManager(LogManager &&) = delete;
   LogManager &operator=(LogManager &&) = delete;
 
+  LogManager();
+  ~LogManager();
+
   // global singleton
   static LogManager &GetInstance(void);
 
   // configuration
-  void Configure(LoggingType logging_type, bool test_mode = false, unsigned int num_frontend_loggers = 1,
-                 LoggerMappingStrategyType logger_mapping_strategy = LoggerMappingStrategyType::ROUND_ROBIN) {
+  void Configure(LoggingType logging_type, unsigned int num_Flush_loggers = 1) {
     logging_type_ = logging_type;
-    test_mode_ = test_mode;
-    num_frontend_loggers_ = num_frontend_loggers;
-    logger_mapping_strategy_ = logger_mapping_strategy;
+    num_Flush_loggers_ = num_Flush_loggers;
   }
 
-  // // reset all frontend loggers, for testing
-  // void ResetFrontendLoggers() {
-  //   for (auto &frontend_logger : frontend_loggers) {
-  //     frontend_logger->Reset();
-  //   }
-  // }
-
-  // // reset log status to invalid
-  // void ResetLogStatus() {
-  //   this->recovery_to_logging_counter = 0;
-  //   SetLoggingStatus(LoggingStatusType::INVALID);
-  // }
-
-  // // Wait for the system to begin
-  // void StartStandbyMode();
-
-  // // Start recovery
-  // void StartRecoveryMode();
-
-  // // Check whether the frontend logger is in logging mode
-  // inline bool IsInLoggingMode() {
-  //   // Check the logging status
-  //   auto is_in_logging_mode = (logging_status == LoggingStatusType::LOGGING);
-  //   return is_in_logging_mode;
-  // }
-
-  // // Used to terminate current logging and wait for sleep mode
-  // void TerminateLoggingMode();
-
-  // // Used to wait for a certain mode (or not certain mode if is_equal is false)
-  // void WaitForModeTransition(LoggingStatusType logging_status, bool is_equal);
-
-  // // End the actual logging
-  // bool EndLogging();
-
-  // // called by frontends when recovery is complete.(for a particular frontend)
-  // void NotifyRecoveryDone();
 
   //===--------------------------------------------------------------------===//
-  // Accessors
+  // 模式控制，转换
   //===--------------------------------------------------------------------===//
 
-  // // Logging status associated with the front end logger of given type
-  // void SetLoggingStatus(LoggingStatusType logging_status);
+  // 等待模式转变为指定状态
+  void WaitForModeTransition(LoggingStatusType logging_status);
 
-  // LoggingStatusType GetLoggingStatus();
+  void SetLoggingStatus(LoggingStatusType logging_status);
 
-  // // Whether to enable or disable synchronous commit ?
-  // void SetSyncCommit(bool sync_commit) { syncronization_commit = sync_commit; }
+  LoggingStatusType GetLoggingStatus();
 
-  // // get the status of sychronus commit
-  // bool GetSyncCommit(void) const { return syncronization_commit; }
-
-  // // returns true if a frontend logger is active
-  // bool ContainsFrontendLogger(void);
-
-  // // set the name of the log file (only used in wbl)
-  // void SetLogFileName(std::string log_file);
-
-  // // get the log file name (used only in wbl)
-  // std::string GetLogFileName(void);
-
-  // void SetLogDirectoryName(std::string log_dir);
-
-  // std::string GetLogDirectoryName(void);
-
-  // bool HasPelotonFrontendLogger() const {
-  //   return (peloton_logging_mode == LoggingType::NVM_WBL);
-  // }
-
-  // // Drop all default tiles for tables before recovery
-  // void PrepareRecovery();
-
-  // // Add default tiles for tables if necessary
-  // void DoneRecovery();
 
   //===--------------------------------------------------------------------===//
-  // Utility Functions
+  // Logging
   //===--------------------------------------------------------------------===//
-
-  // // initialize a list of frontend loggers
-  // void InitFrontendLoggers();
-
-  // // get a frontend logger at given index
-  // FrontendLogger *GetFrontendLogger(unsigned int logger_idx);
-
-  // // remove all frontend loggers (used for testing)
-  // void DropFrontendLoggers();
-
 
   // 在 TimestampOrderingTransactionManager::BeginTransaction 中被调用
   // 负责为此线程分配 BufferLogger()
   void PrepareLogging();
 
-  // log an update
+  /*
+  大致逻辑
+  根据传入的参数构造 LogRecord (且不同的 RecordPosition 要正确设置对应的 RecordType)
+  BufferLogger->Log(LogRecord)
+  if (record_position == TRANSACTION_COMMIT)
+    BufferLogger->WaitForFlush(commit_txn_id); // 解锁需要在 FlushLogger 中调用
+  */
   void LogUpdate(txn_id_t txn_id, const ItemPointer &old_version, const ItemPointer &new_version,
                  RecordPosition record_position = RecordPosition::TRANSACTION_NORMAL);
-
-  // log an insert
   void LogInsert(txn_id_t txn_id, const ItemPointer &new_location,
                  RecordPosition record_position = RecordPosition::TRANSACTION_NORMAL);
-
-  // log a delete
   void LogDelete(txn_id_t txn_id, const ItemPointer &delete_location,
                  RecordPosition record_position = RecordPosition::TRANSACTION_NORMAL);
 
+  // called if a transaction aborts before starting a commit
+  void DoneLogging();
 
+  //===--------------------------------------------------------------------===//
+  // Recovery
+  //===--------------------------------------------------------------------===//
+
+  // 1. 调用 RecoveryFromCheckPoint，如果有检查点，会先载入检查点。
+  // 2. 创建若干 RecoveryLogger，一个线程对应一个实例，从检查点开始恢复。
+  void DoRecovery();
+
+  // RecoveryLoggger 通过此函数通知 LogManager 完成恢复
+  // LogManager 会阻塞直到所有 RecoveryLogger 完成恢复。
+  void NotifyRecoveryDone();
+
+
+  //===--------------------------------------------------------------------===//
+  // CheckPoint
+  //===--------------------------------------------------------------------===//
+
+    // 调用 CheckPointLogger::DoRecovery()
+  void RecoveryFromCheckPoint();
+
+
+
+  //===--------------------------------------------------------------------===//
+  // 功能性函数
+  //===--------------------------------------------------------------------===//
+
+  // 每个线程独有一个 BufferLogger 实例
+  // 如果该线程有 BufferLogger，返回，没有则分配
   BackendLogger *GetBufferLogger(unsigned int hint = 0);
-  // // commit a transaction and wait until stable xxxxxxxxxxxxxxxxxxxx
-  // void LogWaitForCommit(cid_t commit_id); xxxxxxxxxxxxxxxxxxxxx
 
-  // // used by the checkpointer to truncate unneeded log files
-  // void TruncateLogs(txn_id_t commit_id);
+  // 根据定义的数量初始化 FlushLogger，并执行其MainLoop
+  void InitFlushLoggers();
 
-  // // called if a transaction aborts before starting a commit
-  // void DoneLogging();
+  // get a Flush logger at given index
+  FlushLogger *GetFlushLogger(unsigned int logger_idx);
 
-  // // the maximum flushed commit id for all frontend loggers
-  // cid_t GetGlobalMaxFlushedIdForRecovery() {
-  //   return global_max_flushed_id_for_recovery;
-  // }
 
-  // // set the max flushed id for recovery Back
-  // void SetGlobalMaxFlushedIdForRecovery(cid_t new_max) {
-  //   global_max_flushed_id_for_recovery = new_max;
-  // }
+  //===--------------------------------------------------------------------===//
+  // Accessors
+  //===--------------------------------------------------------------------===//
 
-  // // updates the catalog and transaction managers to the correct oid and cid
-  // // after recovery
-  // void UpdateCatalogAndTxnManagers(oid_t new_oid, cid_t new_cid);
+  // 统一的日志文件抬头
+  std::string GetLogFileNameHeader(void);
+  void SetLogFileNameHeader(std::string log_file);
 
-  // // set the maximum commit id which has been persisted to disk
-  // void SetGlobalMaxFlushedCommitId(cid_t);
-
-  // // set the maximum commit id which has been persisted to disk
-  // cid_t GetGlobalMaxFlushedCommitId();
-
-  // // get the list of frontend loggers
-  // std::vector<std::unique_ptr<FrontendLogger>> &GetFrontendLoggersList() {
-  //   return frontend_loggers;
-  // }
-
-  // // get the threshold for creating a new log file
-  // inline unsigned int GetLogFileSizeLimit() { return log_file_size_limit_; }
-
-  // // set the threshold for creating a new log file
-  // inline void SetLogFileSizeLimit(unsigned int file_size_limit) {
-  //   log_file_size_limit_ = file_size_limit;
-  // }
-
-  // // get the beginning capacity of a log buffer
-  // inline unsigned int GetLogBufferCapacity() { return log_buffer_capacity_; }
-
-  // // set the initial capacity of log buffers passed between frontend and backend
-  // // loggers
-  // inline void SetLogBufferCapacity(unsigned int log_buffer_capacity) {
-  //   log_buffer_capacity_ = log_buffer_capacity;
-  // }
-
-  // inline void SetNoWrite(bool no_write) { no_write_ = no_write; }
-
-  // inline bool GetNoWrite() const { return no_write_; }
+  // 统一的日志存储目录
+  void SetLogDirectoryName(std::string log_dir);
+  std::string GetLogDirectoryName(void);
 
  private:
-  LogManager();
-  ~LogManager();
 
   //===--------------------------------------------------------------------===//
   // Data members
   //===--------------------------------------------------------------------===//
-
 
   // LogManager 状态相关
   LoggingStatusType logging_status = LoggingStatusType::INVALID;
@@ -238,8 +159,13 @@ class LogManager {
 
   // FlushLogger 相关
   std::vector<std::unique_ptr<FlushLogger>> flush_loggers;
-  unsigned int num_frontend_loggers_ = DEFAULT_NUM_FRONTEND_LOGGERS;
-  int frontend_logger_assign_counter; // round robin counter for frontend logger assignment
+  unsigned int num_flush_loggers_ = DEFAULT_NUM_Flush_LOGGERS;
+  int Flush_logger_assign_counter; // round robin counter for Flush logger assignment
+
+  // RecoveryLogger 相关
+  unsigned int finished_recovery_logger_counter = 0;
+  unsigned int num_recovery_loggers_ = DEFAULT_NUM_RECOVERY_LOGGERS;
+  
 
   // 文件大小 以及 Buffer 大小
   size_t log_file_size_limit_ = LOG_FILE_LEN; // 128MB
@@ -248,50 +174,15 @@ class LogManager {
   // 日志记录的硬件类型
   LoggingType logging_type_ = LoggingType::INVALID;
 
-
-
-
-
-  // test mode will not log to disk
-  bool test_mode_ = false;
-
-  bool prepared_recovery_ = false;
-
-  // To update catalog and txn managers
-  std::mutex update_managers_mutex;
-
-  // count of loggers who moved from the recovery to loggin state
-  unsigned int recovery_to_logging_counter = 0;
-
-  // maximum flushed commit id
-  cid_t max_flushed_cid = 0;
-
-  bool syncronization_commit = true;  // default should be true because it is safest
-
-  // name of log file (for wbl)
-  std::string log_file_name;
-
+  // 日志目录名
   std::string log_directory_name;
+  // 日志文件名
+  std::string log_file_name_header;
 
+  // 恢复后反馈
+  // oid_t max_oid_after_recovery = 0;
+  // cid_t max_cid_after_recovery = 0;
 
-
-  cid_t global_max_flushed_id_for_recovery = UINT64_MAX;
-
-  cid_t global_max_flushed_commit_id = 0;
-
-  // number the fronted loggers who have updated the manager of their max oid
-  // and cid
-  int update_managers_count = 0;
-
-  bool replicating_ = false;
-
-  bool no_write_ = false;
-
-  // max oid after recovery
-  oid_t max_oid = 0;
-
-  // max cid after recovery
-  cid_t max_cid = 0;
 };
 
 }  // namespace logging
